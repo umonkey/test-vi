@@ -1,0 +1,12 @@
+{
+    "name": "anonymous/text-vi",
+    "description": "no description",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Justin Forest",
+            "email": "hex@umonkey.net"
+        }
+    ],
+    "require": {}
+}

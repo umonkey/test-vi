@@ -9,6 +9,11 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use App\Entity\Order;
 use App\Entity\OrderProduct;
 use App\Entity\Product;
+use App\Exceptions\BadOrderAmount;
+use App\Exceptions\OrderAlreadyPaid;
+use App\Exceptions\OrderNotFound;
+use App\Exceptions\PaymentFailure;
+use App\Exceptions\ProductNotFound;
 
 class ShopService
 {
@@ -49,7 +54,7 @@ class ShopService
 
         foreach ($productIds as $id) {
             if (!($product = $products->findOneById($id))) {
-                throw new \RuntimeException("product {$id} not found");
+                throw new ProductNotFound("product {$id} not found");
             }
 
             $order->addProduct($product);
@@ -67,19 +72,17 @@ class ShopService
         $em = $this->container->get('EntityManager');
         $orders = $em->getRepository(Order::class);
 
-        $em->beginTransaction();
-
         if (!($order = $orders->findOneById($orderId))) {
-            throw new \RuntimeException('order not found');
+            throw new OrderNotFound('order not found');
         }
 
         if ($order->isPaid()) {
-            throw new \RuntimeException('order is paid already');
+            throw new OrderAlreadyPaid('order is paid already');
         }
 
         $total = $order->getTotal();
         if ($total != $amount) {
-            throw new \RuntimeException('order amount mismatch');
+            throw new BadOrderAmount('order amount mismatch');
         }
 
         $httpClient = new Client();
@@ -89,9 +92,8 @@ class ShopService
             $order->setPaid();
             $em->persist($order);
             $em->flush();
-            $em->commit();
         } else {
-            throw new \RuntimeException('error checking payment');
+            throw new PaymentFailure('error checking payment');
         }
     }
 }

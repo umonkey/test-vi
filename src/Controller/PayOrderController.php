@@ -12,8 +12,13 @@ class PayOrderController extends AbstractController
         $orderId = $request->attributes->get('id');
         $amount = $request->request->get('amount');
 
+        $em = $this->container->get('EntityManager');
+        $em->beginTransaction();
+
         $shop = $this->container->get('ShopService');
         $shop->setOrderPaid($orderId, $amount);
+
+        $em->commit();
 
         return $this->sendJSON([
             'result' => [

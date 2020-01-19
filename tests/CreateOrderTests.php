@@ -3,9 +3,31 @@
 use App\Tests\BaseTest;
 use App\Entity\Order;
 use App\Entity\Product;
+use App\Exceptions\ProductNotFound;
 
 class CreateOrderTests extends BaseTest
 {
+    public function testBadProduct()
+    {
+        $shop = $this->container->get('ShopService');
+
+        try {
+            $order = $shop->createOrder([123456]);
+            $this->fail('order created with bad product id');
+        } catch (ProductNotFound $e) {
+            // pass
+        }
+
+        try {
+            $order = $shop->createOrder(['haha']);
+            $this->fail('order created with bad product id');
+        } catch (ProductNotFound $e) {
+            // pass
+        }
+
+        $this->assertTrue(true);
+    }
+
     public function testCreate()
     {
         $em = $this->container->get('EntityManager');

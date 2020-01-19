@@ -1,0 +1,7 @@
+- [x] Request routing.
+- [ ] Handle 404/405 errors.
+- [ ] Use Doctrine ORM.
+- [ ] Implement /api/v1/seed.
+- [ ] Implement /api/v1/orders/create.
+- [ ] Implement /api/v1/orders/pay.
+- [ ] Create migrations.

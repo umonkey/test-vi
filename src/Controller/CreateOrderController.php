@@ -5,12 +5,20 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CreateOrderController
+class CreateOrderController extends AbstractController
 {
     public function index(Request $request): Response
     {
-        return new Response('OK', Response::HTTP_OK, [
-            'Content-Type' => 'text/plain',
+        $productIds = $request->request->get('product');
+
+        $shop = $this->container->get('ShopService');
+        $order = $shop->createOrder($productIds);
+
+        return $this->sendJSON([
+            'result' => [
+                'order_id' => $order->getId(),
+                'total' => $order->getTotal(),
+            ],
         ]);
     }
 }

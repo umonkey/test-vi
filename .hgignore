@@ -1,2 +1,4 @@
 ^tz\.txt$
 ^vendor$
+^var$
+^\.phpunit\.result\.cache$

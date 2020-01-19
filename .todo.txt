@@ -1,7 +1,8 @@
 - [x] Request routing.
-- [ ] Handle 404/405 errors.
-- [ ] Use Doctrine ORM.
-- [ ] Implement /api/v1/seed.
-- [ ] Implement /api/v1/orders/create.
-- [ ] Implement /api/v1/orders/pay.
-- [ ] Create migrations.
+- [x] Handle 404/405 errors.
+- [x] Use Doctrine ORM.
+- [x] Implement /api/v1/seed.
+- [x] Implement /api/v1/orders/create.
+- [x] Implement /api/v1/orders/{id}/pay.
+- [x] Create migrations.
+- [ ] Create tests.

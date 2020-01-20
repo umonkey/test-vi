@@ -7,7 +7,7 @@ use App\Service\ShopService;
 
 $container = new ContainerBuilder();
 
-$container->register('EntityManager', 'App\Service\ORM');
+$container->register('EntityManager', 'App\Service\EntityManager');
 
 $container->register('ShopService', ShopService::class)
           ->addArgument($container);

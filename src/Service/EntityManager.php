@@ -2,10 +2,10 @@
 
 namespace App\Service;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManager as DEM;
 use Doctrine\ORM\Tools\Setup;
 
-class ORM
+class EntityManager
 {
     private $entityManager;
 
@@ -29,7 +29,7 @@ class ORM
             'charset' => $_ENV['DB_CHARSET'] ?? 'UTF-8',
         ];
 
-        $this->entityManager = EntityManager::create($conn, $config);
+        $this->entityManager = DEM::create($conn, $config);
     }
 
     public function __call($method, array $args)

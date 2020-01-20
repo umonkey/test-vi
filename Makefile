@@ -6,7 +6,10 @@ help:
 	@echo "make serve             -- start local php server"
 	@echo "make test              -- run unit tests"
 
-all: migrate proxies
+all: folders migrate proxies
+
+folders:
+	mkdir -p var/cache var/data
 
 serve:
 	php -S 127.0.0.1:8080 -t public

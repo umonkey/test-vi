@@ -10,9 +10,10 @@ class SeedController extends AbstractController
     public function index(Request $request): Response
     {
         $em = $this->container->get('EntityManager');
+        $shop = $this->container->get('ShopService');
+
         $em->beginTransaction();
 
-        $shop = $this->container->get('ShopService');
         $shop->seedProducts();
 
         $em->commit();

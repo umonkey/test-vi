@@ -13,9 +13,10 @@ class PayOrderController extends AbstractController
         $amount = $request->request->get('amount');
 
         $em = $this->container->get('EntityManager');
+        $shop = $this->container->get('ShopService');
+
         $em->beginTransaction();
 
-        $shop = $this->container->get('ShopService');
         $shop->setOrderPaid($orderId, $amount);
 
         $em->commit();

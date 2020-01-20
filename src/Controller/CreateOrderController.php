@@ -12,7 +12,7 @@ class CreateOrderController extends AbstractController
         $em = $this->container->get('EntityManager');
         $em->beginTransaction();
 
-        $productIds = $request->request->get('product');
+        $productIds = $request->request->get('product') ?? [];
 
         $shop = $this->container->get('ShopService');
         $order = $shop->createOrder($productIds);

@@ -18,8 +18,10 @@ class SeedController extends AbstractController
 
         $em->commit();
 
-        return new Response('OK', Response::HTTP_OK, [
-            'Content-Type' => 'text/plain',
+        return $this->sendJSON([
+            'result' => [
+                'success' => true,
+            ],
         ]);
     }
 }

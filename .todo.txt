@@ -5,4 +5,4 @@
 - [x] Implement /api/v1/orders/create.
 - [x] Implement /api/v1/orders/{id}/pay.
 - [x] Create migrations.
-- [ ] Create tests.
+- [x] Create tests.

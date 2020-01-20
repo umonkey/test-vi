@@ -49,6 +49,10 @@ class ShopService
         $em = $this->container->get('EntityManager');
         $products = $em->getRepository(Product::class);
 
+        if (empty($productIds)) {
+            throw new ProductNotFound("products not specified");
+        }
+
         $order = new Order;
         $order->setStatus(Order::STATUS_NEW);
 

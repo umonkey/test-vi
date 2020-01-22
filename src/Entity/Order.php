@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,8 +14,8 @@ use Doctrine\ORM\PersistentCollection;
  **/
 class Order
 {
-    const STATUS_NEW = 0,
-          STATUS_PAID = 1;
+    public const STATUS_NEW = 0,
+                 STATUS_PAID = 1;
 
     /**
      * @var integer

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -9,8 +11,8 @@ class PayOrderController extends AbstractController
 {
     public function index(Request $request): Response
     {
-        $orderId = $request->attributes->get('id');
-        $amount = $request->request->get('amount');
+        $orderId = (int)$request->attributes->get('id');
+        $amount = (int)$request->request->get('amount');
 
         $em = $this->container->get('EntityManager');
         $shop = $this->container->get('ShopService');
